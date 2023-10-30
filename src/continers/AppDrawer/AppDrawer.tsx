@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
 import Toolbar from '@mui/material/Toolbar'
@@ -24,11 +24,11 @@ export default function AppDrawer({ children }: AppDrawerProps) {
   const [open, setOpen] = useState(true)
   const width = window.innerWidth
 
-  const handleResize = () => {
+  useEffect(() => {
     width < 1024 ? setOpen(false) : setOpen(true)
-  }
+  }, [width])
 
-  window.addEventListener('resize', () => handleResize())
+  // window.addEventListener('resize', () => handleResize())
 
   const handleDrawerOpen = () => {
     setOpen(prev => !prev)
