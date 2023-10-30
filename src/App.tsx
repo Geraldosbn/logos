@@ -9,12 +9,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Main />}>
-          <Route index path='/home' element={<Home />} />
-          <Route path='/churchHistory' element={<ChurchHistory />} />
-          <Route path='/ruleOfFaith' element={<RulesOfFaith />} />
-          <Route path='/childrensArea' element={<ChildrensArea />} />
-        </Route>
+        <Route index path='/' element={<Main />} />
+        <Route path='/home' element={<Home />} />
+        <Route path='/churchHistory' element={<ChurchHistory />} />
+        <Route path='/ruleOfFaith' element={<RulesOfFaith />} />
+        <Route path='/childrensArea' element={<ChildrensArea />} />
       </Routes>
     </BrowserRouter>
   )
