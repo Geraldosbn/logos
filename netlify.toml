@@ -1,13 +1,4 @@
 [build]
-  base = "/"
-  publish = "dist" # Substitua 'dist' pelo diretório de saída do seu projeto
-
-[dev]
-  framework = {
-    publish = "dist" # Substitua 'dist' pelo diretório de saída do seu projeto
-  }
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  publish = "build"
+  command = "echo 'default context'"
+  functions = "functions"
