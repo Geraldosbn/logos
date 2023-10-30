@@ -27,19 +27,11 @@ export default function AppDrawer({ children }: AppDrawerProps) {
     setOpen(prev => !prev)
   }
 
-  const handleResize = () => {
+  useEffect(() => {
     if (window.innerWidth < 1024) {
       setOpen(false)
     } else {
       setOpen(true)
-    }
-  }
-
-  useEffect(() => {
-    window.addEventListener('resize', handleResize)
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
     }
   }, [])
 
