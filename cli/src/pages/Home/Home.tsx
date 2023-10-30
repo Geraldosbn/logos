@@ -1,11 +1,21 @@
-import { Outlet } from 'react-router-dom'
-import AppDrawer from '../../continers/AppDrawer/AppDrawer'
+import { Card } from '../../components/Card/Card'
+import bibleStudyCards from './mockStudies'
+import { useStyles } from './style'
 
 function Home() {
+  const classes = useStyles()
   return (
-    <AppDrawer>
-      <Outlet />
-    </AppDrawer>
+    <div className={classes.container}>
+      {bibleStudyCards.map(({ author, content, description, title }) => (
+        <Card
+          key={title}
+          title={title}
+          author={author}
+          content={content}
+          description={description}
+        />
+      ))}
+    </div>
   )
 }
 

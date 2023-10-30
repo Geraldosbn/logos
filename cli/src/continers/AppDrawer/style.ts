@@ -45,8 +45,7 @@ export const AppBar = styled(MuiAppBar, {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen
     })
-  }),
-  backgroundColor: theme.palette.grey[700]
+  })
 }))
 
 export const DrawerHeader = styled('div')(({ theme }) => ({

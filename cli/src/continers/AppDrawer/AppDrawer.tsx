@@ -20,7 +20,7 @@ interface AppDrawerProps {
   children?: React.ReactNode
 }
 
-export default function PersistentDrawerLeft({ children }: AppDrawerProps) {
+export default function AppDrawer({ children }: AppDrawerProps) {
   const theme = useTheme()
   const [open, setOpen] = useState(true)
 
