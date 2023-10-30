@@ -22,17 +22,26 @@ interface AppDrawerProps {
 export default function AppDrawer({ children }: AppDrawerProps) {
   const classes = useStyles()
   const [open, setOpen] = useState(true)
-  const width = window.innerWidth
-
-  useEffect(() => {
-    width < 1024 ? setOpen(false) : setOpen(true)
-  }, [width])
-
-  // window.addEventListener('resize', () => handleResize())
 
   const handleDrawerOpen = () => {
     setOpen(prev => !prev)
   }
+
+  const handleResize = () => {
+    if (window.innerWidth < 1024) {
+      setOpen(false)
+    } else {
+      setOpen(true)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   return (
     <Box sx={{ display: 'flex' }}>
