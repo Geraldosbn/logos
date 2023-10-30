@@ -1,5 +1,6 @@
 import { styled } from '@mui/material/styles'
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar'
+import { makeStyles } from '@mui/styles'
 export const drawerWidth = 240
 
 export const Main = styled('main', {
@@ -54,4 +55,13 @@ export const DrawerHeader = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
   justifyContent: 'flex-end'
+}))
+
+export const useStyles = makeStyles(() => ({
+  toolBar: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%'
+  }
 }))

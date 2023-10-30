@@ -6,7 +6,7 @@ export const ChurchHistory = () => {
   return (
     <Container maxWidth='md' className={classes.container}>
       <Paper elevation={3} className={classes.paper}>
-        <Typography variant='h3' gutterBottom>
+        <Typography variant='h5' gutterBottom>
           História da Nossa Igreja
         </Typography>
         <Typography variant='body1' paragraph>
