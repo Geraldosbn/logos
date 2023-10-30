@@ -5,7 +5,7 @@ import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import CloseIcon from '@mui/icons-material/Close'
-import { Paper } from '@mui/material'
+import { Container, Fade, Paper } from '@mui/material'
 import { Transition } from './Transition'
 import { useStyles } from './style'
 
@@ -57,9 +57,13 @@ export default function FullScreenDialog({
             </Typography>
           </Toolbar>
         </AppBar>
-        <Paper elevation={3} className={classes.paper}>
-          {content}
-        </Paper>
+        <Fade in timeout={600}>
+          <Container maxWidth='md'>
+            <Paper elevation={3} className={classes.paper}>
+              {content}
+            </Paper>
+          </Container>
+        </Fade>
       </Dialog>
     </div>
   )

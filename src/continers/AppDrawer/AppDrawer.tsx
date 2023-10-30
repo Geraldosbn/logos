@@ -13,6 +13,7 @@ import ListItemText from '@mui/material/ListItemText'
 import { AppBar, DrawerHeader, Main, drawerWidth, useStyles } from './style'
 import { listItems } from './utils/listItem'
 import logoNomeBranco from '../../assets/Logo_Igreja_Logos_Branco.png'
+import { Container } from '@mui/material'
 
 interface AppDrawerProps {
   children?: React.ReactNode
@@ -86,7 +87,9 @@ export default function AppDrawer({ children }: AppDrawerProps) {
           </div>
         ))}
       </Drawer>
-      <Main open={open}>{children}</Main>
+      <Main open={open}>
+        <Container maxWidth='md'>{children}</Container>
+      </Main>
     </Box>
   )
 }
