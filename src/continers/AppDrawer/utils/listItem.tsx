@@ -7,7 +7,7 @@ export interface ListItems {
 }
 
 export const listItems: ListItems[] = [
-  { label: 'Inicio', to: '/home', icon: <Home /> },
+  { label: 'Inicio', to: '/', icon: <Home /> },
   { label: 'História da igreja', to: '/churchHistory', icon: <Description /> },
   { label: 'Regra de fé', to: '/ruleOfFaith', icon: <Gavel /> },
   { label: 'Área infantil', to: '/childrensArea', icon: <Toys /> }
