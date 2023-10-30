@@ -60,7 +60,6 @@ export default function AppDrawer({ children }: AppDrawerProps) {
       <Drawer
         sx={{
           width: drawerWidth,
-
           height: '100%',
           flexShrink: 0,
           '& .MuiDrawer-paper': {
