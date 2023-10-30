@@ -6,9 +6,9 @@ function Home() {
   const classes = useStyles()
   return (
     <div className={classes.container}>
-      {bibleStudyCards.map(({ author, content, description, title }) => (
+      {bibleStudyCards.map(({ author, content, description, title }, index) => (
         <Card
-          key={title}
+          key={index}
           title={title}
           author={author}
           content={content}

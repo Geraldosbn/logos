@@ -70,8 +70,8 @@ export default function AppDrawer({ children }: AppDrawerProps) {
         </DrawerHeader>
         <Divider />
         {listItems.map(({ label, to, icon }) => (
-          <div>
-            <ListItem key={label} disablePadding>
+          <div key={label}>
+            <ListItem disablePadding>
               <ListItemButton LinkComponent={'a'} href={to}>
                 <ListItemIcon>{icon}</ListItemIcon>
                 <ListItemText primary={label} />
