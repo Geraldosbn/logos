@@ -1,0 +1,32 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "\"serviço backend site logos\"",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node dist/server.cjs",
+    "dev:js": "node --watch --no-warnings dist/server.cjs",
+    "dev:ts": "tsx watch src/server.ts",
+    "build": "yarn clear && tsup src",
+    "test": "vitest",
+    "clear": "rm -rf dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tsup": "^7.2.0",
+    "tsx": "^3.14.0",
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.6",
+    "dotenv": "^16.3.1"
+  },
+  "dependencies": {
+    "zod": "^3.22.4",
+    "fastify": "4.22.2",
+    "postgres": "^3.4.0"
+  },
+  "engines": {
+    "node": "18.16.0"
+  }
+}
