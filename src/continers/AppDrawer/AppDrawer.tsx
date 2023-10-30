@@ -60,6 +60,8 @@ export default function AppDrawer({ children }: AppDrawerProps) {
       <Drawer
         sx={{
           width: drawerWidth,
+
+          height: '100%',
           flexShrink: 0,
           '& .MuiDrawer-paper': {
             width: drawerWidth,
@@ -89,7 +91,9 @@ export default function AppDrawer({ children }: AppDrawerProps) {
         ))}
       </Drawer>
       <Main open={open}>
-        <Container maxWidth='md'>{children}</Container>
+        <Container maxWidth='md' sx={{ overflowY: 'auto' }}>
+          {children}
+        </Container>
       </Main>
     </Box>
   )
