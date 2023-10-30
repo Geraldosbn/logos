@@ -10,7 +10,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Main />}>
-          <Route index path='/' element={<Home />} />
+          <Route index path='/home' element={<Home />} />
           <Route path='/churchHistory' element={<ChurchHistory />} />
           <Route path='/ruleOfFaith' element={<RulesOfFaith />} />
           <Route path='/childrensArea' element={<ChildrensArea />} />
