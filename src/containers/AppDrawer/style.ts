@@ -63,5 +63,11 @@ export const useStyles = makeStyles(() => ({
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%'
+  },
+  container: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%'
   }
 }))

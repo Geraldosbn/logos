@@ -4,6 +4,8 @@ import Home from './pages/Home/Home.tsx'
 import { ChildrensArea } from './pages/ChildrensArea/ChildrensArea.tsx'
 import { RulesOfFaith } from './pages/RulesOfFaith/RulesOfFaith.tsx'
 import { Main } from './pages/Main/Main.tsx'
+import { Login } from './pages/Login/Login.tsx'
+import { DataRegister } from './pages/DataRegister/DataRegister.tsx'
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
           <Route path='/churchHistory' element={<ChurchHistory />} />
           <Route path='/ruleOfFaith' element={<RulesOfFaith />} />
           <Route path='/childrensArea' element={<ChildrensArea />} />
+          <Route path='/loggedArea' element={<Login />} />
+          <Route path='/dataRegister' element={<DataRegister />} />
         </Route>
       </Routes>
     </BrowserRouter>
