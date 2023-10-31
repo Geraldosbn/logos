@@ -11,5 +11,5 @@ export const listItems: ListItems[] = [
   { label: 'História da igreja', to: '/churchHistory', icon: <Description /> },
   { label: 'Regra de fé', to: '/ruleOfFaith', icon: <Gavel /> },
   { label: 'Área infantil', to: '/childrensArea', icon: <Toys /> },
-  { label: 'Login', to: '/loggedArea', icon: <Login /> }
+  { label: 'Entrar', to: '/loggedArea', icon: <Login /> }
 ]
