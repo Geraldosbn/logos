@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
-import { Paper, TextField, Typography } from '@mui/material'
+import { Paper, Typography } from '@mui/material'
 import { useStyles } from './style'
 import { Button } from '../../components/Button/Button'
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
+import { useFormLogin } from './hook/useFormLogin'
+import { InputTextField } from '../../components/InputTextField/InputTextField'
 
 export interface LoginParams {
   username: string
@@ -15,10 +16,7 @@ export const Login = () => {
   const classes = useStyles()
   const navigate = useNavigate()
   const { login, isLoggedIn } = useAuth()
-  const [loginParams, setLoginParams] = useState<LoginParams>({
-    username: '',
-    password: ''
-  })
+  const { register, handleSubmit, errors } = useFormLogin()
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -26,25 +24,33 @@ export const Login = () => {
     }
   }, [isLoggedIn])
 
-  const handleLogin = () => {
-    login(loginParams)
+  const handleLogin = (data: LoginParams) => {
+    console.log('data', data)
+    login(data)
   }
+
   return (
-    <Paper className={classes.paper} elevation={3}>
-      <Typography>Área logada</Typography>
-      <TextField
-        label='Usuário'
-        onChange={e =>
-          setLoginParams({ ...loginParams, username: e.target.value })
-        }
-      />
-      <TextField
-        label='Senha'
-        onChange={e =>
-          setLoginParams({ ...loginParams, password: e.target.value })
-        }
-      />
-      <Button onClick={handleLogin}>Entrar</Button>
-    </Paper>
+    <form>
+      <Paper className={classes.paper} elevation={3}>
+        <Typography>Área logada</Typography>
+        <InputTextField
+          label='Usuário'
+          type='text'
+          inputProps={{ ...register('username') }}
+          error={!!errors.username}
+          errorMessage={errors.username?.message}
+        />
+        <InputTextField
+          label='Senha'
+          type='password'
+          inputProps={{ ...register('password') }}
+          error={!!errors.password}
+          errorMessage={errors.password?.message}
+        />
+        <Button type='submit' onClick={handleSubmit(handleLogin)}>
+          Entrar
+        </Button>
+      </Paper>
+    </form>
   )
 }

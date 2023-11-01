@@ -10,5 +10,11 @@ export const useStyles = makeStyles(() => ({
     width: 250,
     padding: 20,
     marginTop: '10%'
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-between'
   }
 }))

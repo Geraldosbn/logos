@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { listButtonRegister } from './utils/listButton'
 import { Button } from '../../components/Button/Button'
 import { DialogForms } from './dialogForms/DialogForms'
+import { CircularProgress } from '@mui/material'
 
 export interface StateSelected {
   label?: string
@@ -12,13 +13,15 @@ export interface StateSelected {
 
 export const DataRegister = () => {
   const navigate = useNavigate()
-  const { isLoggedIn } = useAuth()
+  const { isLoggedIn, idle } = useAuth()
   const [valueOfButton, setValueOfButton] = useState<StateSelected>()
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate('/', { replace: true })
-    }
-  }, [])
+  useEffect(() => {}, [])
+
+  if (idle) return <CircularProgress />
+
+  if (!isLoggedIn) {
+    navigate('/', { replace: true })
+  }
 
   return (
     <div>

@@ -8,6 +8,7 @@ import {
 import { LoginParams } from '../pages/Login/Login'
 
 interface AuthContextType {
+  idle: boolean
   isLoggedIn: boolean
   login: ({ username, password }: LoginParams) => void
   logout: () => void
@@ -16,17 +17,20 @@ interface AuthContextType {
 export const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
+  const [idle, setIdle] = useState(true)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
+    setIdle(false)
     const savedIsLoggedIn = localStorage.getItem('isLoggedIn')
     if (savedIsLoggedIn === 'true') {
       setIsLoggedIn(true)
+      setIdle(false)
     }
   }, [])
 
   const login = ({ username, password }: LoginParams) => {
-    if (username === 'admin' && password === '') {
+    if (username === 'admin' && password === '123') {
       setIsLoggedIn(true)
       localStorage.setItem('isLoggedIn', 'true')
     }
@@ -38,7 +42,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ idle, isLoggedIn, login, logout }}>
       {children}
     </AuthContext.Provider>
   )
