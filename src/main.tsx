@@ -11,13 +11,13 @@ import { queryClient } from './lib/react-query.ts'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ThemeProvider theme={globalTheme}>
-      <CssBaseline />
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={globalTheme}>
+        <CssBaseline />
         <AuthProvider>
           <App />
         </AuthProvider>
-      </QueryClientProvider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 )
