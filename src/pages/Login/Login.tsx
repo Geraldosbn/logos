@@ -26,7 +26,6 @@ export const Login = () => {
   }, [isLoggedIn])
 
   const handleLogin = (data: LoginParams) => {
-    console.log('data', data)
     login(data)
   }
 
