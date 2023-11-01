@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { ObjectSchema } from 'yup'
 
 export const useFormValidate = (schema: ObjectSchema<any>) => {
-  const { register, handleSubmit, formState } = useForm({
+  const { register, handleSubmit, formState, reset } = useForm({
     mode: 'all',
     resolver: yupResolver(schema)
   })
@@ -14,6 +14,7 @@ export const useFormValidate = (schema: ObjectSchema<any>) => {
   return {
     register,
     handleSubmit,
+    reset,
     errors,
     isSubmitting
   }

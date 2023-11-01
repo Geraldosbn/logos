@@ -25,12 +25,10 @@ export const DataRegister = () => {
 
   return (
     <div>
-      {listButtonRegister.map(({ label, value, typePost }) => (
+      {listButtonRegister.map(({ label, typePost }, index) => (
         <Button
-          key={value}
-          onClick={() =>
-            setValueOfButton({ label: value, open: true, typePost })
-          }
+          key={index}
+          onClick={() => setValueOfButton({ label, open: true, typePost })}
           style={{ margin: 5 }}
         >
           {label}

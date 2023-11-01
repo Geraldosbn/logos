@@ -5,18 +5,29 @@ import { schemaFormPost } from './schemaFormPost'
 import { Button } from '../../../../components/Button/Button'
 import { useStyles } from './style'
 import { Post } from '../../../../shared/interfaces/interfaces'
+import { useFormPost } from './service/useFormPost'
+import { useEffect } from 'react'
 
 export interface TypePost {
-  typePost?: 'article' | 'childReading'
+  typePost?: 'articles' | 'childReadings'
 }
 
-export const FormPost = ({ typePost = 'article' }: TypePost) => {
+export const FormPost = ({ typePost = 'articles' }: TypePost) => {
   const classes = useStyles()
-  const { register, handleSubmit, errors } = useFormValidate(schemaFormPost)
-  const typePostArticle = typePost === 'article'
+  const { mutateAsync: onSubmit, isSuccess } = useFormPost()
+  const { register, handleSubmit, errors, reset } =
+    useFormValidate(schemaFormPost)
+  const typePostArticle = typePost === 'articles'
+
+  useEffect(() => {
+    if (isSuccess) {
+      reset()
+      alert('artigo criado com sucesso.')
+    }
+  }, [isSuccess])
 
   const handleSubmitForm = (data: Post) => {
-    console.log('data', data)
+    onSubmit({ data, typePost })
   }
 
   return (
