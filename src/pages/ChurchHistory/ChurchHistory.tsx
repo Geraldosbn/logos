@@ -1,10 +1,10 @@
-import { Typography, Paper } from '@mui/material'
+import { Typography, Paper, Container } from '@mui/material'
 import { useStyles } from './style'
 
 export const ChurchHistory = () => {
   const classes = useStyles()
   return (
-    <div className={classes.container}>
+    <Container maxWidth='md' className={classes.container}>
       <Paper elevation={3} className={classes.paper}>
         <Typography variant='h5' gutterBottom>
           História da Nossa Igreja
@@ -24,6 +24,6 @@ export const ChurchHistory = () => {
           visuais para enriquecer a narrativa.
         </Typography>
       </Paper>
-    </div>
+    </Container>
   )
 }

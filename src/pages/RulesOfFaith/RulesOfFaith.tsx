@@ -1,11 +1,11 @@
-import { Typography, Paper } from '@mui/material'
+import { Typography, Paper, Container } from '@mui/material'
 import { useStyles } from './style' // Certifique-se de importar os estilos corretamente
 
 export const RulesOfFaith = () => {
   const classes = useStyles()
 
   return (
-    <div className={classes.container}>
+    <Container maxWidth='md' className={classes.container}>
       <Paper elevation={3} className={classes.paper}>
         <Typography variant='h5' gutterBottom>
           Regra de Fé
@@ -102,6 +102,6 @@ export const RulesOfFaith = () => {
           Atualizada (ARA).
         </Typography>
       </Paper>
-    </div>
+    </Container>
   )
 }

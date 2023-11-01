@@ -4,8 +4,9 @@ import { useStyles } from './style'
 import { Button } from '../../components/Button/Button'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
-import { useFormLogin } from './hook/useFormLogin'
+import { useFormValidate } from '../../hooks/useFormValidate'
 import { InputTextField } from '../../components/InputTextField/InputTextField'
+import { schemaLogin } from './schema/loginSchema'
 
 export interface LoginParams {
   username: string
@@ -16,7 +17,7 @@ export const Login = () => {
   const classes = useStyles()
   const navigate = useNavigate()
   const { login, isLoggedIn } = useAuth()
-  const { register, handleSubmit, errors } = useFormLogin()
+  const { register, handleSubmit, errors } = useFormValidate(schemaLogin)
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -38,14 +39,14 @@ export const Login = () => {
           type='text'
           inputProps={{ ...register('username') }}
           error={!!errors.username}
-          errorMessage={errors.username?.message}
+          errorMessage={errors.username?.message as string}
         />
         <InputTextField
           label='Senha'
           type='password'
           inputProps={{ ...register('password') }}
           error={!!errors.password}
-          errorMessage={errors.password?.message}
+          errorMessage={errors.password?.message as string}
         />
         <Button type='submit' onClick={handleSubmit(handleLogin)}>
           Entrar

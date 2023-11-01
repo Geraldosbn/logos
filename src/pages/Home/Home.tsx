@@ -7,13 +7,7 @@ function Home() {
   return (
     <div className={classes.container}>
       {bibleStudyCards.map(({ author, content, description, title }, index) => (
-        <Card
-          key={index}
-          title={title}
-          author={author}
-          content={content}
-          description={description}
-        />
+        <Card key={index} post={{ author, content, description, title }} />
       ))}
     </div>
   )

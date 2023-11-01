@@ -1,6 +1,7 @@
 import FullScreenDialog from '../../../containers/Dialog/Dialog'
 import { useState, useEffect } from 'react'
 import { StateSelected } from '../DataRegister'
+import { FormPost } from './FormPost/FormPost'
 
 export interface DialogFormsProps {
   state?: StateSelected
@@ -26,7 +27,7 @@ export const DialogForms = ({ state, onClose }: DialogFormsProps) => {
           : 'Publicar leitura infantil'
       }
       onClose={handleClose}
-      content={<div></div>}
+      content={<FormPost typePost={state?.typePost} />}
     />
   )
 }

@@ -1,13 +1,15 @@
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { listButtonRegister } from './utils/listButton'
 import { Button } from '../../components/Button/Button'
 import { DialogForms } from './dialogForms/DialogForms'
 import { CircularProgress } from '@mui/material'
+import { TypePost } from './dialogForms/FormPost/FormPost'
 
 export interface StateSelected {
   label?: string
+  typePost?: TypePost['typePost']
   open?: boolean
 }
 
@@ -15,20 +17,20 @@ export const DataRegister = () => {
   const navigate = useNavigate()
   const { isLoggedIn, idle } = useAuth()
   const [valueOfButton, setValueOfButton] = useState<StateSelected>()
-  useEffect(() => {}, [])
 
   if (idle) return <CircularProgress />
-
   if (!isLoggedIn) {
     navigate('/', { replace: true })
   }
 
   return (
     <div>
-      {listButtonRegister.map(({ label, value }) => (
+      {listButtonRegister.map(({ label, value, typePost }) => (
         <Button
           key={value}
-          onClick={() => setValueOfButton({ label: value, open: true })}
+          onClick={() =>
+            setValueOfButton({ label: value, open: true, typePost })
+          }
           style={{ margin: 5 }}
         >
           {label}

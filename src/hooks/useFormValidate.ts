@@ -1,16 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm } from 'react-hook-form'
-import * as Yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { ObjectSchema } from 'yup'
 
-const schemaLogin = Yup.object().shape({
-  username: Yup.string().required('Campo obrigatório.'),
-  password: Yup.string().required('Campo obrigatório.')
-})
-
-export const useFormLogin = () => {
+export const useFormValidate = (schema: ObjectSchema<any>) => {
   const { register, handleSubmit, formState } = useForm({
     mode: 'all',
-    resolver: yupResolver(schemaLogin)
+    resolver: yupResolver(schema)
   })
 
   const { errors, isSubmitting } = formState

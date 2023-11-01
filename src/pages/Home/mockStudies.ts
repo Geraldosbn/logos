@@ -1,6 +1,6 @@
-import { CardProps } from '../../components/Card/Card'
+import { Post } from '../../shared/interfaces/interfaces'
 
-const bibleStudyCards: CardProps[] = [
+const bibleStudyCards: Post[] = [
   {
     author: 'João',
     title: 'Estudo sobre o Livro de Gênesis',

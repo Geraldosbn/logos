@@ -7,14 +7,8 @@ export const ChildrensArea = () => {
   return (
     <div className={classes.container}>
       {childrensBibleStudyCards.map(
-        ({ author, content, description, title }) => (
-          <Card
-            key={title}
-            title={title}
-            author={author}
-            content={content}
-            description={description}
-          />
+        ({ author, content, description, title }, index) => (
+          <Card key={index} post={{ author, content, description, title }} />
         )
       )}
     </div>

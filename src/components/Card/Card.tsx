@@ -6,16 +6,13 @@ import FullScreenDialog from '../../containers/Dialog/Dialog'
 import { useState } from 'react'
 import { Button } from '../Button/Button'
 import { useStyles } from './style'
+import { Post } from '../../shared/interfaces/interfaces'
 
-export interface CardProps {
-  // id: string utilizar quando for chamar o coteudo do backend
-  author: string
-  title: string
-  description: string
-  content: string
+interface CardProps {
+  post: Post
 }
-
-export const Card = ({ author, title, description, content }: CardProps) => {
+export const Card = ({ post }: CardProps) => {
+  const { author, title, description, content } = post
   const classes = useStyles()
   const [open, setOpen] = useState(false)
   return (

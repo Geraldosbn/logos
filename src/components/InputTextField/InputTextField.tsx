@@ -5,9 +5,11 @@ interface InputTextField extends StandardTextFieldProps {
 }
 export const InputTextField = ({ errorMessage, ...props }: InputTextField) => {
   return (
-    <div>
+    <div style={{ width: '100%' }}>
       <TextField {...props} />
-      <p style={{ color: 'red', fontSize: 12, margin: 0 }}>{errorMessage}</p>
+      <div style={{ color: 'red', fontSize: 12, margin: 0 }}>
+        {errorMessage}
+      </div>
     </div>
   )
 }
