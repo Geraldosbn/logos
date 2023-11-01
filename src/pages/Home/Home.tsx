@@ -1,18 +1,21 @@
+import { CircularProgress } from '@mui/material'
 import { Card } from '../../components/Card/Card'
 import { useHome } from './service/useHome'
 import { useStyles } from './style'
 
 function Home() {
   const classes = useStyles()
-  const { data: postsFromApi } = useHome()
+  const { data: postsFromApi, isFetching } = useHome()
 
-  return (
-    <div className={classes.container}>
-      {postsFromApi?.map(({ author, content, description, title }, index) => (
-        <Card key={index} post={{ author, content, description, title }} />
-      ))}
-    </div>
-  )
+  if (isFetching) return <CircularProgress />
+  if (postsFromApi && postsFromApi?.length <= 0)
+    return (
+      <div className={classes.container}>
+        {postsFromApi?.map(({ author, content, description, title }, index) => (
+          <Card key={index} post={{ author, content, description, title }} />
+        ))}
+      </div>
+    )
 }
 
 export default Home
