@@ -10,7 +10,7 @@ export interface PostVariables {
 export const useFormPost = () => {
   return useMutation(async ({ data, typePost }: PostVariables) => {
     const response = await fetch(
-      `https://node-api-xaci.onrender.com/${typePost}`,
+      `https://node-api-xaci.onrender.com/${typePost}/posts`,
       {
         method: 'POST',
         headers: {
