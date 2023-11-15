@@ -1,7 +1,7 @@
 import { PostVariables } from '../pages/DataRegister/dialogForms/FormPost/service/useFormPost'
 
 export const getArticles = async () => {
-  const data = await fetch('http://localhost:3000/articles')
+  const data = await fetch('https://node-api-xaci.onrender.com/articles')
   const response = await data.json()
 
   return response
