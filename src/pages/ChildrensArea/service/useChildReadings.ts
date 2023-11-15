@@ -1,12 +1,10 @@
 import { useQuery } from 'react-query'
 import { Post } from '../../../shared/interfaces/interfaces'
+import { getChildReadings } from '../../../services/requests'
 
 export const useChildReadings = () => {
-  return useQuery('postChildReadings', async () => {
-    const response = await fetch(
-      'https://node-api-xaci.onrender.com/childReadings/posts'
-    )
-    const data: Post[] = await response.json()
+  return useQuery('ChildReadings', async () => {
+    const data: Post[] = await getChildReadings()
     if (data) {
       return data
     }

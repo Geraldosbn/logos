@@ -1,6 +1,7 @@
 import { useMutation } from 'react-query'
 import { Post } from '../../../../../shared/interfaces/interfaces'
 import { TypePost } from '../FormPost'
+import { createPost } from '../../../../../services/requests'
 
 export interface PostVariables {
   data: Post
@@ -9,17 +10,8 @@ export interface PostVariables {
 
 export const useFormPost = () => {
   return useMutation(async ({ data, typePost }: PostVariables) => {
-    const response = await fetch(
-      `https://node-api-xaci.onrender.com/${typePost}/posts`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      }
-    )
+    const response = await createPost({ data, typePost })
 
-    return response.status
+    return response
   })
 }
