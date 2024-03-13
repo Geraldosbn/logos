@@ -1,4 +1,4 @@
-import { Description, Gavel, Home, Toys } from '@mui/icons-material'
+import { Description, Gavel, Home, People, Toys } from '@mui/icons-material'
 import { mainPath } from '../../../shared/constants/path'
 
 export interface ListItems {
@@ -9,6 +9,11 @@ export interface ListItems {
 
 export const listItems: ListItems[] = [
   { label: 'Inicio', to: `${mainPath}`, icon: <Home /> },
+  {
+    label: 'Cadastrar de membro',
+    to: `${mainPath}/memberRegister`,
+    icon: <People />
+  },
   {
     label: 'História da igreja',
     to: `${mainPath}/churchHistory`,

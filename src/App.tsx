@@ -7,6 +7,7 @@ import { Main } from './pages/Main/Main.tsx'
 import { Login } from './pages/Login/Login.tsx'
 import { DataRegister } from './pages/DataRegister/DataRegister.tsx'
 import { mainPath } from './shared/constants/path.ts'
+import { MemberRegister } from './pages/MemberRegister/MemberRegister.tsx'
 
 function App() {
   return (
@@ -15,6 +16,10 @@ function App() {
         <Route path='/' element={<Login />} />
         <Route path={mainPath} element={<Main />}>
           <Route index path={mainPath} element={<Home />} />
+          <Route
+            path={`${mainPath}/memberRegister`}
+            element={<MemberRegister />}
+          />
           <Route
             path={`${mainPath}/churchHistory`}
             element={<ChurchHistory />}
