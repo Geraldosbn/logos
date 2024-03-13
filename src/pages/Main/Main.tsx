@@ -1,10 +1,13 @@
-import { Navigate, Outlet } from 'react-router-dom'
+import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import AppDrawer from '../../containers/AppDrawer/AppDrawer'
 import { useAuth } from '../../context/AuthContext'
 
 export const Main = () => {
-  const { isLoggedIn = false } = useAuth()
-  if (!isLoggedIn) return <Navigate to='/' />
+  const { pathname } = useLocation()
+
+  const { isLoggedIn } = useAuth()
+
+  if (!isLoggedIn && pathname === '/main') return <Navigate to='/' />
   return (
     <AppDrawer>
       <Outlet />

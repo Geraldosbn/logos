@@ -6,18 +6,25 @@ import { RulesOfFaith } from './pages/RulesOfFaith/RulesOfFaith.tsx'
 import { Main } from './pages/Main/Main.tsx'
 import { Login } from './pages/Login/Login.tsx'
 import { DataRegister } from './pages/DataRegister/DataRegister.tsx'
+import { mainPath } from './shared/constants/path.ts'
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Login />} />
-        <Route path='/main' element={<Main />}>
-          <Route index path='/main/home' element={<Home />} />
-          <Route path='/main/churchHistory' element={<ChurchHistory />} />
-          <Route path='/main/ruleOfFaith' element={<RulesOfFaith />} />
-          <Route path='/main/childrensArea' element={<ChildrensArea />} />
-          <Route path='/main/dataRegister' element={<DataRegister />} />
+        <Route path={mainPath} element={<Main />}>
+          <Route index path={mainPath} element={<Home />} />
+          <Route
+            path={`${mainPath}/churchHistory`}
+            element={<ChurchHistory />}
+          />
+          <Route path={`${mainPath}/ruleOfFaith`} element={<RulesOfFaith />} />
+          <Route
+            path={`${mainPath}/childrensArea`}
+            element={<ChildrensArea />}
+          />
+          <Route path={`${mainPath}/dataRegister`} element={<DataRegister />} />
         </Route>
       </Routes>
     </BrowserRouter>
