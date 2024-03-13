@@ -13,12 +13,15 @@ import ListItemText from '@mui/material/ListItemText'
 import { AppBar, DrawerHeader, Main, drawerWidth } from './style'
 import { listItems } from './utils/listItem'
 import { Logo } from '../../components/Logo/Logo'
+import { useAuth } from '../../context/AuthContext'
+import { Logout } from '@mui/icons-material'
 
 interface AppDrawerProps {
   children?: React.ReactNode
 }
 
 export default function AppDrawer({ children }: AppDrawerProps) {
+  const { logout } = useAuth()
   const [open, setOpen] = useState(true)
 
   const handleDrawerOpen = () => {
@@ -51,6 +54,14 @@ export default function AppDrawer({ children }: AppDrawerProps) {
             <MenuIcon />
           </IconButton>
           <Logo logo='nameWhite' />
+          <IconButton
+            color='inherit'
+            aria-label='logout'
+            onClick={logout}
+            edge='end'
+          >
+            <Logout />
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
