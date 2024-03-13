@@ -10,16 +10,15 @@ import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import { AppBar, DrawerHeader, Main, drawerWidth, useStyles } from './style'
+import { AppBar, DrawerHeader, Main, drawerWidth } from './style'
 import { listItems } from './utils/listItem'
-import logoNomeBranco from '../../assets/Logo_Igreja_Logos_Branco.png'
+import { Logo } from '../../components/Logo/Logo'
 
 interface AppDrawerProps {
   children?: React.ReactNode
 }
 
 export default function AppDrawer({ children }: AppDrawerProps) {
-  const classes = useStyles()
   const [open, setOpen] = useState(true)
 
   const handleDrawerOpen = () => {
@@ -51,9 +50,7 @@ export default function AppDrawer({ children }: AppDrawerProps) {
           >
             <MenuIcon />
           </IconButton>
-          <div className={classes.toolBar}>
-            <img src={logoNomeBranco} width={165} />
-          </div>
+          <Logo logo='nameWhite' />
         </Toolbar>
       </AppBar>
       <Drawer
