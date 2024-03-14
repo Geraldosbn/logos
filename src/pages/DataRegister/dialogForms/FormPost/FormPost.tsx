@@ -40,28 +40,28 @@ export const FormPost = ({ typePost = 'articles' }: TypePost) => {
         className={classes.input}
         inputProps={{ ...register('title') }}
         error={!!errors.title}
-        errorMessage={errors.title?.message as string}
+        helperText={errors.title?.message as string}
       />
       <InputTextField
         label='Descrição'
         className={classes.input}
         inputProps={{ ...register('description') }}
         error={!!errors.description}
-        errorMessage={errors.description?.message as string}
+        helperText={errors.description?.message as string}
       />
       <InputTextField
         label='Conteúdo'
         className={classes.input}
         inputProps={{ ...register('content') }}
         error={!!errors.content}
-        errorMessage={errors.content?.message as string}
+        helperText={errors.content?.message as string}
       />
       <InputTextField
         label='Autor'
         className={classes.input}
         inputProps={{ ...register('author') }}
         error={!!errors.author}
-        errorMessage={errors.author?.message as string}
+        helperText={errors.author?.message as string}
       />
       <Button type='submit'>Salvar</Button>
     </form>
