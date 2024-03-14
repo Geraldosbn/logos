@@ -38,7 +38,7 @@ export const Login = () => {
             type='text'
             inputProps={{ ...register('username') }}
             error={!!errors.username}
-            errorMessage={errors.username?.message as string}
+            helperText={errors.username?.message as string}
           />
           <InputTextField
             label='Senha'
@@ -46,7 +46,7 @@ export const Login = () => {
             autoComplete='current-password'
             inputProps={{ ...register('password') }}
             error={!!errors.password}
-            errorMessage={errors.password?.message as string}
+            helperText={errors.password?.message as string}
           />
           <Button type='submit' onClick={handleSubmit(handleLogin)}>
             Entrar
