@@ -3,7 +3,7 @@ import { Card } from '../../components/Card/Card'
 import { useHome } from './service/useHome'
 import { useStyles } from './style'
 
-function Home() {
+export const Home = () => {
   const classes = useStyles()
   const { data: postsFromApi, isFetching } = useHome()
 
@@ -18,5 +18,3 @@ function Home() {
     </div>
   )
 }
-
-export default Home

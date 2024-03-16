@@ -4,7 +4,7 @@ export interface InputTextFieldProps extends StandardTextFieldProps {}
 export const InputTextField = ({ ...props }: InputTextFieldProps) => {
   return (
     <TextField
-      style={{ width: '100%', paddingBottom: 5, paddingTop: 5 }}
+      style={{ width: '100%', paddingBottom: 5, marginTop: 10 }}
       {...props}
     />
   )

@@ -1,6 +1,6 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import { ChurchHistory } from './pages/ChurchHistory/ChurchHistory.tsx'
-import Home from './pages/Home/Home.tsx'
+import { Home } from './pages/Home/Home.tsx'
 import { ChildrensArea } from './pages/ChildrensArea/ChildrensArea.tsx'
 import { RulesOfFaith } from './pages/RulesOfFaith/RulesOfFaith.tsx'
 import { Main } from './pages/Main/Main.tsx'
