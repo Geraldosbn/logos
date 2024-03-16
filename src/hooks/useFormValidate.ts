@@ -6,7 +6,7 @@ import { ObjectSchema } from 'yup'
 export const useFormValidate = (schema: ObjectSchema<any>) => {
   const { register, handleSubmit, formState, reset, getValues, setValue } =
     useForm({
-      mode: 'onSubmit',
+      mode: 'onChange',
       resolver: yupResolver(schema)
     })
 

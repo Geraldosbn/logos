@@ -9,6 +9,7 @@ import { CheckBox } from '../../components/CheckBox/CheckBox'
 import { PaperForm } from '../../components/PaperForm/PaperForm'
 import { phoneFormatter } from '../../shared/utils/phoneFormatter'
 import { InputDate } from '../../components/InputDate/InputDate'
+
 //import { Post } from '../../../../shared/interfaces/interfaces'
 
 export const MemberRegister = () => {
@@ -65,6 +66,7 @@ export const MemberRegister = () => {
       />
       <InputDate
         label='Data de nascimento'
+        onChange={date => setValue('birthday', date)}
         inputProps={{ ...register('birthday') }}
         error={!!errors.birthday}
         helperText={errors.birthday?.message as string}
