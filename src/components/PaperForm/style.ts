@@ -6,11 +6,16 @@ export const useStyles = makeStyles(() => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 20,
+    padding: 20
+  },
+  paperLarge: {
     width: '100%',
     '@media (min-width: 1024px)': {
       width: 800
     }
+  },
+  paperSmall: {
+    width: '300px'
   },
   form: {
     display: 'flex',
