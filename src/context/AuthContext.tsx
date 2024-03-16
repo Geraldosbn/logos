@@ -8,8 +8,8 @@ import {
 import { LoginParams } from '../pages/Login/Login'
 
 interface AuthContextType {
-  idle: boolean
-  isLoggedIn: boolean
+  loading: boolean
+  isAuth: boolean
   login: ({ username, password }: LoginParams) => void
   logout: () => void
 }
@@ -17,32 +17,29 @@ interface AuthContextType {
 export const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [idle, setIdle] = useState(true)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [isAuth, setIsAuth] = useState(false)
 
   useEffect(() => {
-    setIdle(false)
-    const savedIsLoggedIn = localStorage.getItem('isLoggedIn')
-    if (savedIsLoggedIn === 'true') {
-      setIsLoggedIn(true)
-      setIdle(false)
-    }
+    const isAuthStorage = localStorage.getItem('isAuth')
+    isAuthStorage === 'true' && setIsAuth(true)
+    setLoading(false)
   }, [])
 
   const login = ({ username, password }: LoginParams) => {
     if (username === 'admin' && password === '123') {
-      setIsLoggedIn(true)
-      localStorage.setItem('isLoggedIn', 'true')
+      setIsAuth(true)
+      localStorage.setItem('isAuth', 'true')
     }
   }
 
   const logout = () => {
-    setIsLoggedIn(false)
-    localStorage.removeItem('isLoggedIn')
+    setIsAuth(false)
+    localStorage.removeItem('isAuth')
   }
 
   return (
-    <AuthContext.Provider value={{ idle, isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ isAuth, login, logout, loading }}>
       {children}
     </AuthContext.Provider>
   )

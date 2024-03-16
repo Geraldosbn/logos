@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { Paper } from '@mui/material'
 import { useStyles } from './style'
 import { Button } from '../../components/Button/Button'
 import { useNavigate } from 'react-router-dom'
@@ -8,6 +7,7 @@ import { useFormValidate } from '../../hooks/useFormValidate'
 import { InputTextField } from '../../components/InputTextField/InputTextField'
 import { schemaLogin } from './schema/loginSchema'
 import { Logo } from '../../components/Logo/Logo'
+import { PaperForm } from '../../components/PaperForm/PaperForm'
 
 export interface LoginParams {
   username: string
@@ -17,12 +17,12 @@ export interface LoginParams {
 export const Login = () => {
   const classes = useStyles()
   const navigate = useNavigate()
-  const { login, isLoggedIn } = useAuth()
+  const { login, isAuth } = useAuth()
   const { register, handleSubmit, errors } = useFormValidate(schemaLogin)
 
   useEffect(() => {
-    isLoggedIn && navigate('/main')
-  }, [isLoggedIn])
+    isAuth && navigate('/main')
+  }, [isAuth])
 
   const handleLogin = (data: LoginParams) => {
     login(data)
@@ -30,29 +30,25 @@ export const Login = () => {
 
   return (
     <div className={classes.container}>
-      <form>
-        <Paper className={classes.paper} elevation={3}>
-          <Logo logo='nameBlack' />
-          <InputTextField
-            label='Usuário'
-            type='text'
-            inputProps={{ ...register('username') }}
-            error={!!errors.username}
-            helperText={errors.username?.message as string}
-          />
-          <InputTextField
-            label='Senha'
-            type='password'
-            autoComplete='current-password'
-            inputProps={{ ...register('password') }}
-            error={!!errors.password}
-            helperText={errors.password?.message as string}
-          />
-          <Button type='submit' onClick={handleSubmit(handleLogin)}>
-            Entrar
-          </Button>
-        </Paper>
-      </form>
+      <PaperForm small onSubmit={handleSubmit(handleLogin)}>
+        <Logo logo='nameBlack' />
+        <InputTextField
+          label='Usuário'
+          autoComplete='username'
+          inputProps={{ ...register('username') }}
+          error={!!errors.username}
+          helperText={errors.username?.message as string}
+        />
+        <InputTextField
+          label='Senha'
+          type='password'
+          autoComplete='current-password'
+          inputProps={{ ...register('password') }}
+          error={!!errors.password}
+          helperText={errors.password?.message as string}
+        />
+        <Button type='submit'>Entrar</Button>
+      </PaperForm>
     </div>
   )
 }
