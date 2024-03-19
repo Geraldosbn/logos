@@ -1,5 +1,5 @@
 import { BASE_URL } from '../config/connectionAPI'
-import { PostVariables } from '../pages/DataRegister/dialogForms/FormPost/service/useFormPost'
+import { Post, PostData } from '../shared/interfaces/interfaces'
 
 export const getArticles = async () => {
   const data = await fetch(`${BASE_URL}/articles`)
@@ -15,8 +15,8 @@ export const getChildReadings = async () => {
   return response
 }
 
-export const createPost = async ({ data, typePost }: PostVariables) => {
-  const response = await fetch(`${BASE_URL}/${typePost}`, {
+export const createPost = async ({ data, endPoint }: PostData<Post>) => {
+  const response = await fetch(`${BASE_URL}/${endPoint}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

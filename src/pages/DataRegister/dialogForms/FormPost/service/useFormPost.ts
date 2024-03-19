@@ -1,16 +1,10 @@
 import { useMutation } from 'react-query'
-import { Post } from '../../../../../shared/interfaces/interfaces'
-import { TypePost } from '../FormPost'
+import { Post, PostData } from '../../../../../shared/interfaces/interfaces'
 import { createPost } from '../../../../../services/requests'
 
-export interface PostVariables {
-  data: Post
-  typePost: TypePost['typePost']
-}
-
 export const useFormPost = () => {
-  return useMutation(async ({ data, typePost }: PostVariables) => {
-    const response = await createPost({ data, typePost })
+  return useMutation(async ({ data, endPoint }: PostData<Post>) => {
+    const response = await createPost({ data, endPoint })
 
     return response
   })

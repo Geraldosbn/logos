@@ -4,20 +4,20 @@ import { useFormValidate } from '../../../../hooks/useFormValidate'
 import { schemaFormPost } from './schemaFormPost'
 import { Button } from '../../../../components/Button/Button'
 import { useStyles } from './style'
-import { Post } from '../../../../shared/interfaces/interfaces'
+import { EndPoints, Post } from '../../../../shared/interfaces/interfaces'
 import { useFormPost } from './service/useFormPost'
 import { useEffect } from 'react'
 
-export interface TypePost {
-  typePost?: 'articles' | 'childReadings'
+interface FormPostProps {
+  endPoint: EndPoints['endPoint']
 }
 
-export const FormPost = ({ typePost = 'articles' }: TypePost) => {
+export const FormPost = ({ endPoint }: FormPostProps) => {
   const classes = useStyles()
   const { mutateAsync: onSubmit, isSuccess } = useFormPost()
   const { register, handleSubmit, errors, reset } =
     useFormValidate(schemaFormPost)
-  const typePostArticle = typePost === 'articles'
+  const typePostArticle = endPoint === 'articles'
 
   useEffect(() => {
     if (isSuccess) {
@@ -27,7 +27,7 @@ export const FormPost = ({ typePost = 'articles' }: TypePost) => {
   }, [isSuccess])
 
   const handleSubmitForm = (data: Post) => {
-    onSubmit({ data, typePost })
+    onSubmit({ data, endPoint })
   }
 
   return (

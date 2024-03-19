@@ -22,12 +22,12 @@ export const DialogForms = ({ state, onClose }: DialogFormsProps) => {
     <FullScreenDialog
       isOpen={open}
       label={
-        state?.typePost === 'articles'
+        state?.endPoint === 'articles'
           ? 'Publicar estudo'
           : 'Publicar leitura infantil'
       }
       onClose={handleClose}
-      content={<FormPost typePost={state?.typePost} />}
+      content={<FormPost endPoint={state?.endPoint ?? 'articles'} />}
     />
   )
 }

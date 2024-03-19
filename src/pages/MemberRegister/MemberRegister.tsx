@@ -1,22 +1,21 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Typography } from '@mui/material'
 import { schemaForm } from './schemaForm'
 import { useStyles } from './style'
+import { useMemberRegister } from './service/useMemberRegister'
 import { useFormValidate } from '../../hooks/useFormValidate'
 import { InputTextField } from '../../components/InputTextField/InputTextField'
 import { Button } from '../../components/Button/Button'
 import { CheckBox } from '../../components/CheckBox/CheckBox'
 import { PaperForm } from '../../components/PaperForm/PaperForm'
-
 import { InputDate } from '../../components/InputDate/InputDate'
 import { InputPhone } from '../../components/InputPhone/InputPhone'
 import { InputCPF } from '../../components/InputCPF/InputCPF'
-
-//import { Post } from '../../../../shared/interfaces/interfaces'
+import { MemberData } from '../../shared/interfaces/interfaces'
 
 export const MemberRegister = () => {
   const classes = useStyles()
-  // const { mutateAsync: onSubmit, isSuccess } = useMemberRegister()
+  const { mutateAsync: onSubmit, isSuccess, reset } = useMemberRegister()
 
   const [isUserSystem, setIsUserSystem] = useState(false)
   const [passwords, setPasswords] = useState<{
@@ -24,25 +23,22 @@ export const MemberRegister = () => {
     confirmPassword: string
   }>({ password: '', confirmPassword: '' })
 
-  const { register, errors, handleSubmit, setValue, getValues } =
-    useFormValidate(
-      schemaForm({
-        isUserSystem,
-        passwordError: passwords.password !== passwords.confirmPassword
-      })
-    )
+  const { register, errors, handleSubmit, setValue } = useFormValidate(
+    schemaForm({
+      isUserSystem,
+      passwordError: passwords.password !== passwords.confirmPassword
+    })
+  )
 
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     reset()
-  //     alert('artigo criado com sucesso.')
-  //   }
-  // }, [isSuccess])
+  useEffect(() => {
+    if (isSuccess) {
+      reset()
+      alert('artigo criado com sucesso.')
+    }
+  }, [isSuccess])
 
-  console.log('getValues: ', getValues())
-
-  const handleSubmitForm = () => {
-    //  onSubmit({ data, typePost }) data: Post
+  const handleSubmitForm = (data: MemberData) => {
+    onSubmit(data)
   }
 
   return (

@@ -2,11 +2,11 @@ import { useState } from 'react'
 import { listButtonRegister } from './utils/listButton'
 import { Button } from '../../components/Button/Button'
 import { DialogForms } from './dialogForms/DialogForms'
-import { TypePost } from './dialogForms/FormPost/FormPost'
+import { EndPoints } from '../../shared/interfaces/interfaces'
 
 export interface StateSelected {
   label?: string
-  typePost?: TypePost['typePost']
+  endPoint?: EndPoints['endPoint']
   open?: boolean
 }
 
@@ -15,10 +15,10 @@ export const DataRegister = () => {
 
   return (
     <div>
-      {listButtonRegister.map(({ label, typePost }, index) => (
+      {listButtonRegister.map(({ label, endPoint }, index) => (
         <Button
           key={index}
-          onClick={() => setValueOfButton({ label, open: true, typePost })}
+          onClick={() => setValueOfButton({ label, open: true, endPoint })}
           style={{ margin: 5 }}
         >
           {label}

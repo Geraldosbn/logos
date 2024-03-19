@@ -1,13 +1,14 @@
-import { TypePost } from './../dialogForms/FormPost/FormPost'
+import { EndPoints } from '../../../shared/interfaces/interfaces'
+
 export interface ListButton {
   label: string
-  typePost: TypePost['typePost']
+  endPoint: EndPoints['endPoint']
 }
 
 export const listButtonRegister: ListButton[] = [
-  { label: 'Publicar estudo', typePost: 'articles' },
+  { label: 'Publicar estudo', endPoint: 'articles' },
   {
     label: 'Publicar leitura infantil',
-    typePost: 'childReadings'
+    endPoint: 'childReadings'
   }
 ]
