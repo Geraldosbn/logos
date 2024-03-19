@@ -7,8 +7,10 @@ import { InputTextField } from '../../components/InputTextField/InputTextField'
 import { Button } from '../../components/Button/Button'
 import { CheckBox } from '../../components/CheckBox/CheckBox'
 import { PaperForm } from '../../components/PaperForm/PaperForm'
-import { phoneFormatter } from '../../shared/utils/phoneFormatter'
+
 import { InputDate } from '../../components/InputDate/InputDate'
+import { InputPhone } from '../../components/InputPhone/InputPhone'
+import { InputCPF } from '../../components/InputCPF/InputCPF'
 
 //import { Post } from '../../../../shared/interfaces/interfaces'
 
@@ -22,12 +24,13 @@ export const MemberRegister = () => {
     confirmPassword: string
   }>({ password: '', confirmPassword: '' })
 
-  const { register, errors, handleSubmit, setValue } = useFormValidate(
-    schemaForm({
-      isUserSystem,
-      passwordError: passwords.password !== passwords.confirmPassword
-    })
-  )
+  const { register, errors, handleSubmit, setValue, getValues } =
+    useFormValidate(
+      schemaForm({
+        isUserSystem,
+        passwordError: passwords.password !== passwords.confirmPassword
+      })
+    )
 
   // useEffect(() => {
   //   if (isSuccess) {
@@ -35,6 +38,8 @@ export const MemberRegister = () => {
   //     alert('artigo criado com sucesso.')
   //   }
   // }, [isSuccess])
+
+  console.log('getValues: ', getValues())
 
   const handleSubmitForm = () => {
     //  onSubmit({ data, typePost }) data: Post
@@ -49,17 +54,22 @@ export const MemberRegister = () => {
         error={!!errors.name}
         helperText={errors.name?.message as string}
       />
-      <InputTextField
+      <InputPhone
         label='Telefone'
-        onChange={evt => setValue('phone', phoneFormatter(evt.target.value))}
+        setValueOnBlur={value => {
+          setValue('phone', value)
+        }}
         inputProps={{
           ...register('phone')
         }}
         error={!!errors.phone}
         helperText={errors.phone?.message as string}
       />
-      <InputTextField
+      <InputCPF
         label='CPF'
+        setValueOnBlur={value => {
+          setValue('cpf', value)
+        }}
         inputProps={{ ...register('cpf') }}
         error={!!errors.cpf}
         helperText={errors.cpf?.message as string}
