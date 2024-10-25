@@ -1,9 +1,9 @@
-import { makeStyles } from '@mui/styles'
+import {makeStyles} from '@mui/styles'
 
 export const useStyles = makeStyles(() => ({
-  paper: {
-    margin: '30px',
-    padding: '20px',
-    textAlign: 'center'
-  }
+	paper: {
+		margin: '30px',
+		padding: '20px',
+		textAlign: 'center'
+	}
 }))
