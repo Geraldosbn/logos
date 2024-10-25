@@ -1,40 +1,40 @@
-import React, { useState, useEffect } from 'react'
-import Box from '@mui/material/Box'
-import Drawer from '@mui/material/Drawer'
-import Toolbar from '@mui/material/Toolbar'
-import Divider from '@mui/material/Divider'
-import IconButton from '@mui/material/IconButton'
-import MenuIcon from '@mui/icons-material/Menu'
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
-import ListItem from '@mui/material/ListItem'
-import ListItemButton from '@mui/material/ListItemButton'
-import ListItemIcon from '@mui/material/ListItemIcon'
-import ListItemText from '@mui/material/ListItemText'
-import { AppBar, DrawerHeader, Main, drawerWidth } from './style'
-import { listItems } from './utils/listItem'
-import { Logo } from '../../components/Logo/Logo'
-import { useAuth } from '../../context/AuthContext'
-import { Logout } from '@mui/icons-material'
+import React, { useState, useEffect } from 'react';
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import Toolbar from '@mui/material/Toolbar';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import { AppBar, DrawerHeader, Main, drawerWidth } from './style';
+import { listItems } from './utils/listItem';
+import { Logo } from '../../components/Logo/Logo';
+import { useAuth } from '../../context/AuthContext';
+import { Logout } from '@mui/icons-material';
 
 interface AppDrawerProps {
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }
 
 export default function AppDrawer({ children }: AppDrawerProps) {
-  const { logout } = useAuth()
-  const [open, setOpen] = useState(true)
+  const { logout } = useAuth();
+  const [open, setOpen] = useState(true);
 
   const handleDrawerOpen = () => {
-    setOpen(prev => !prev)
-  }
+    setOpen(prev => !prev);
+  };
 
   useEffect(() => {
     if (window.innerWidth < 1024) {
-      setOpen(false)
+      setOpen(false);
     } else {
-      setOpen(true)
+      setOpen(true);
     }
-  }, [])
+  }, []);
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -98,5 +98,5 @@ export default function AppDrawer({ children }: AppDrawerProps) {
       </Drawer>
       <Main open={open}>{children}</Main>
     </Box>
-  )
+  );
 }

@@ -9,9 +9,8 @@ import { Button } from '../../components/Button/Button'
 import { CheckBox } from '../../components/CheckBox/CheckBox'
 import { PaperForm } from '../../components/PaperForm/PaperForm'
 import { InputDate } from '../../components/InputDate/InputDate'
-import { InputPhone } from '../../components/InputPhone/InputPhone'
-import { InputCPF } from '../../components/InputCPF/InputCPF'
 import { MemberData } from '../../shared/interfaces/interfaces'
+import { InputMask } from '../../components/InputMask/InputMask'
 
 export const MemberRegister = () => {
   const classes = useStyles()
@@ -23,18 +22,16 @@ export const MemberRegister = () => {
     confirmPassword: string
   }>({ password: '', confirmPassword: '' })
 
-  const { register, errors, handleSubmit, setValue } = useFormValidate(
-    schemaForm({
-      isUserSystem,
-      passwordError: passwords.password !== passwords.confirmPassword
-    })
-  )
+  const { register, errors, handleSubmit, setValue, clearErrors } =
+    useFormValidate(
+      schemaForm({
+        isUserSystem,
+        passwordError: passwords.password !== passwords.confirmPassword
+      })
+    )
 
   useEffect(() => {
-    if (isSuccess) {
-      reset()
-      alert('artigo criado com sucesso.')
-    }
+    isSuccess && reset()
   }, [isSuccess])
 
   const handleSubmitForm = (data: MemberData) => {
@@ -50,8 +47,9 @@ export const MemberRegister = () => {
         error={!!errors.name}
         helperText={errors.name?.message as string}
       />
-      <InputPhone
+      <InputMask
         label='Telefone'
+        type='phone'
         setValueOnBlur={value => {
           setValue('phone', value)
         }}
@@ -61,8 +59,9 @@ export const MemberRegister = () => {
         error={!!errors.phone}
         helperText={errors.phone?.message as string}
       />
-      <InputCPF
+      <InputMask
         label='CPF'
+        type='cpf'
         setValueOnBlur={value => {
           setValue('cpf', value)
         }}
@@ -72,8 +71,11 @@ export const MemberRegister = () => {
       />
       <InputDate
         label='Data de nascimento'
-        onChange={date => setValue('birthday', date)}
-        inputProps={{ ...register('birthday') }}
+        onChange={value => setValue('birthday', value)}
+        inputProps={{
+          ...register('birthday')
+        }}
+        clearError={() => clearErrors('birthday')}
         error={!!errors.birthday}
         helperText={errors.birthday?.message as string}
       />

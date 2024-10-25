@@ -6,20 +6,25 @@ import {
 import { useState } from 'react'
 import { extractNumbers } from '../../shared/utils/extractNumbers'
 
-interface InputPhoneProps
+interface InputMaskProps
   extends Pick<
     InputTextFieldProps,
     'inputProps' | 'label' | 'onChange' | 'error' | 'helperText'
   > {
+  type: 'cpf' | 'phone'
   setValueOnBlur?: (value: string) => void
 }
 
-export const InputPhone = ({ setValueOnBlur, ...props }: InputPhoneProps) => {
+export const InputMask = ({
+  setValueOnBlur,
+  type,
+  ...props
+}: InputMaskProps) => {
   const [value, setValue] = useState('')
 
   return (
     <PatternFormat
-      format='(##) #####-####'
+      format={type === 'phone' ? '(##) #####-####' : '###.###.###-##'}
       onChange={evt => setValue(extractNumbers(evt.target.value))}
       onBlur={() => setValueOnBlur && setValueOnBlur(value)}
       customInput={InputTextField}

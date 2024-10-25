@@ -1,32 +1,32 @@
-import { useEffect } from 'react'
-import { useStyles } from './style'
-import { Button } from '../../components/Button/Button'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../../context/AuthContext'
-import { useFormValidate } from '../../hooks/useFormValidate'
-import { InputTextField } from '../../components/InputTextField/InputTextField'
-import { schemaLogin } from './schema/loginSchema'
-import { Logo } from '../../components/Logo/Logo'
-import { PaperForm } from '../../components/PaperForm/PaperForm'
+import { useEffect } from 'react';
+import { useStyles } from './style';
+import { Button } from '../../components/Button/Button';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import { useFormValidate } from '../../hooks/useFormValidate';
+import { InputTextField } from '../../components/InputTextField/InputTextField';
+import { schemaLogin } from './schema/loginSchema';
+import { Logo } from '../../components/Logo/Logo';
+import { PaperForm } from '../../components/PaperForm/PaperForm';
 
 export interface LoginParams {
-  username: string
-  password: string
+  username: string;
+  password: string;
 }
 
 export const Login = () => {
-  const classes = useStyles()
-  const navigate = useNavigate()
-  const { login, isAuth } = useAuth()
-  const { register, handleSubmit, errors } = useFormValidate(schemaLogin)
+  const classes = useStyles();
+  const navigate = useNavigate();
+  const { login, isAuth } = useAuth();
+  const { register, handleSubmit, errors } = useFormValidate(schemaLogin);
 
   useEffect(() => {
-    isAuth && navigate('/main')
-  }, [isAuth])
+    isAuth && navigate('/main');
+  }, [isAuth]);
 
   const handleLogin = (data: LoginParams) => {
-    login(data)
-  }
+    login(data);
+  };
 
   return (
     <div className={classes.container}>
@@ -50,5 +50,5 @@ export const Login = () => {
         <Button type='submit'>Entrar</Button>
       </PaperForm>
     </div>
-  )
-}
+  );
+};

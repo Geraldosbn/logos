@@ -1,4 +1,4 @@
-import { makeStyles } from '@mui/styles'
+import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles(() => ({
   container: {
@@ -9,4 +9,4 @@ export const useStyles = makeStyles(() => ({
     flexWrap: 'wrap',
     width: '100%'
   }
-}))
+}));
