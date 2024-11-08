@@ -9,58 +9,60 @@ import {useFormPost} from './service/useFormPost'
 import {useEffect} from 'react'
 
 interface FormPostProps {
-	endPoint: EndPoints['endPoint']
+  endPoint: EndPoints['endPoint']
 }
 
 export const FormPost = ({endPoint}: FormPostProps) => {
-	const classes = useStyles()
-	const {mutateAsync: onSubmit, isSuccess} = useFormPost()
-	const {register, handleSubmit, errors, reset} = useFormValidate(schemaFormPost)
-	const typePostArticle = endPoint === 'articles'
+  const classes = useStyles()
+  const {mutateAsync: onSubmit, isSuccess} = useFormPost()
+  const {register, handleSubmit, errors, reset} = useFormValidate(schemaFormPost)
+  const typePostArticle = endPoint === 'articles'
 
-	useEffect(() => {
-		if (isSuccess) {
-			reset()
-			alert('artigo criado com sucesso.')
-		}
-	}, [isSuccess])
+  useEffect(() => {
+    if (isSuccess) {
+      reset()
+      alert('artigo criado com sucesso.')
+    }
+  }, [isSuccess])
 
-	const handleSubmitForm = (data: Post) => {
-		onSubmit({data, endPoint})
-	}
+  const handleSubmitForm = (data: Post) => {
+    onSubmit({data, endPoint})
+  }
 
-	return (
-		<form className={classes.form} onSubmit={handleSubmit(handleSubmitForm)}>
-			<Typography className={classes.title}>Cadastrar {typePostArticle ? 'artigo' : 'historia infantil'}</Typography>
-			<InputTextField
-				label="Titulo"
-				className={classes.input}
-				inputProps={{...register('title')}}
-				error={!!errors.title}
-				helperText={errors.title?.message as string}
-			/>
-			<InputTextField
-				label="Descrição"
-				className={classes.input}
-				inputProps={{...register('description')}}
-				error={!!errors.description}
-				helperText={errors.description?.message as string}
-			/>
-			<InputTextField
-				label="Conteúdo"
-				className={classes.input}
-				inputProps={{...register('content')}}
-				error={!!errors.content}
-				helperText={errors.content?.message as string}
-			/>
-			<InputTextField
-				label="Autor"
-				className={classes.input}
-				inputProps={{...register('author')}}
-				error={!!errors.author}
-				helperText={errors.author?.message as string}
-			/>
-			<Button type="submit">Salvar</Button>
-		</form>
-	)
+  return (
+    <form
+      className={classes.form}
+      onSubmit={handleSubmit(handleSubmitForm)}>
+      <Typography className={classes.title}>Cadastrar {typePostArticle ? 'artigo' : 'historia infantil'}</Typography>
+      <InputTextField
+        label="Titulo"
+        className={classes.input}
+        inputProps={{...register('title')}}
+        error={!!errors.title}
+        helperText={errors.title?.message as string}
+      />
+      <InputTextField
+        label="Descrição"
+        className={classes.input}
+        inputProps={{...register('description')}}
+        error={!!errors.description}
+        helperText={errors.description?.message as string}
+      />
+      <InputTextField
+        label="Conteúdo"
+        className={classes.input}
+        inputProps={{...register('content')}}
+        error={!!errors.content}
+        helperText={errors.content?.message as string}
+      />
+      <InputTextField
+        label="Autor"
+        className={classes.input}
+        inputProps={{...register('author')}}
+        error={!!errors.author}
+        helperText={errors.author?.message as string}
+      />
+      <Button type="submit">Salvar</Button>
+    </form>
+  )
 }

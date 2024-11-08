@@ -3,10 +3,16 @@ import Slide from '@mui/material/Slide'
 import {TransitionProps} from '@mui/material/transitions'
 
 export const Transition = React.forwardRef(function Transition(
-	props: TransitionProps & {
-		children: React.ReactElement
-	},
-	ref: React.Ref<unknown>
+  props: TransitionProps & {
+    children: React.ReactElement
+  },
+  ref: React.Ref<unknown>
 ) {
-	return <Slide direction="up" ref={ref} {...props} />
+  return (
+    <Slide
+      direction="up"
+      ref={ref}
+      {...props}
+    />
+  )
 })

@@ -1,7 +1,7 @@
 import {extractNumbers} from './extractNumbers'
 
 export const phoneFormatter = (value: string) => {
-	const onlyNumbers = extractNumbers(value)
+  const onlyNumbers = extractNumbers(value)
 
-	return onlyNumbers.slice(0, 11)
+  return onlyNumbers.slice(0, 11)
 }

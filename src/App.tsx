@@ -10,21 +10,45 @@ import {mainPath} from './shared/constants/path.ts'
 import {MemberRegister} from './pages/MemberRegister/MemberRegister.tsx'
 
 function App() {
-	return (
-		<BrowserRouter>
-			<Routes>
-				<Route path="/" element={<Login />} />
-				<Route path={mainPath} element={<Main />}>
-					<Route index path={mainPath} element={<Home />} />
-					<Route path={`${mainPath}/memberRegister`} element={<MemberRegister />} />
-					<Route path={`${mainPath}/churchHistory`} element={<ChurchHistory />} />
-					<Route path={`${mainPath}/ruleOfFaith`} element={<RulesOfFaith />} />
-					<Route path={`${mainPath}/childrensArea`} element={<ChildrensArea />} />
-					<Route path={`${mainPath}/dataRegister`} element={<DataRegister />} />
-				</Route>
-			</Routes>
-		</BrowserRouter>
-	)
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={<Login />}
+        />
+        <Route
+          path={mainPath}
+          element={<Main />}>
+          <Route
+            index
+            path={mainPath}
+            element={<Home />}
+          />
+          <Route
+            path={`${mainPath}/memberRegister`}
+            element={<MemberRegister />}
+          />
+          <Route
+            path={`${mainPath}/churchHistory`}
+            element={<ChurchHistory />}
+          />
+          <Route
+            path={`${mainPath}/ruleOfFaith`}
+            element={<RulesOfFaith />}
+          />
+          <Route
+            path={`${mainPath}/childrensArea`}
+            element={<ChildrensArea />}
+          />
+          <Route
+            path={`${mainPath}/dataRegister`}
+            element={<DataRegister />}
+          />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App

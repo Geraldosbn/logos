@@ -1,25 +1,34 @@
 export interface PostData<T> {
-	data: T
-	endPoint: EndPoints['endPoint']
+  data: T
+  endPoint: EndPoints['endPoint']
 }
 
 export interface EndPoints {
-	endPoint: 'articles' | 'childReadings' | 'createMember'
+  endPoint: 'articles' | 'childReadings' | 'createMember' | 'login'
+}
+
+export interface Login {
+  login: string
+  password: string
+}
+
+export interface Token {
+  token: string
 }
 
 export interface Post {
-	id?: string
-	author: string
-	title: string
-	description: string
-	content: string
+  id?: string
+  author: string
+  title: string
+  description: string
+  content: string
 }
 
 export interface MemberData {
-	name: string
-	phone: string
-	cpf: string
-	birthday: string
-	login?: string
-	password?: string
+  name: string
+  phone: string
+  cpf: string
+  birthday: string
+  login?: string
+  password?: string
 }
