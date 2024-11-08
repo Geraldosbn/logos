@@ -1,44 +1,54 @@
 import {createContext, useState, ReactNode, useEffect, useContext} from 'react'
-import {LoginParams} from '../pages/Login/Login'
+import {loginRequest} from './service/loginService'
+import {Login} from '../shared/interfaces/interfaces'
+
+interface IsAuthAndToken {
+  isAuth: boolean
+  token: string
+}
 
 interface AuthContextType {
-	loading: boolean
-	isAuth: boolean
-	login: ({username, password}: LoginParams) => void
-	logout: () => void
+  loading: boolean
+  authentication: IsAuthAndToken
+  login: ({login, password}: Login) => void
+  logout: () => void
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
+const authInitialState: IsAuthAndToken = {isAuth: false, token: ''}
+
 export function AuthProvider({children}: {children: ReactNode}) {
-	const [loading, setLoading] = useState(true)
-	const [isAuth, setIsAuth] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [authentication, setAuthentication] = useState<IsAuthAndToken>(authInitialState)
 
-	useEffect(() => {
-		const isAuthStorage = localStorage.getItem('isAuth')
-		isAuthStorage === 'true' && setIsAuth(true)
-		setLoading(false)
-	}, [])
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    token !== null && setAuthentication({isAuth: true, token})
+    setLoading(false)
+  }, [])
 
-	const login = ({username, password}: LoginParams) => {
-		if (username === 'admin' && password === '123') {
-			setIsAuth(true)
-			localStorage.setItem('isAuth', 'true')
-		}
-	}
+  const login = async (data: Login) => {
+    const token = await loginRequest(data)
+    if (token !== '') {
+      setAuthentication({isAuth: true, token})
+      return localStorage.setItem('token', token)
+    }
+    return logout()
+  }
 
-	const logout = () => {
-		setIsAuth(false)
-		localStorage.removeItem('isAuth')
-	}
+  const logout = () => {
+    setAuthentication(authInitialState)
+    localStorage.removeItem('token')
+  }
 
-	return <AuthContext.Provider value={{isAuth, login, logout, loading}}>{children}</AuthContext.Provider>
+  return <AuthContext.Provider value={{authentication, login, logout, loading}}>{children}</AuthContext.Provider>
 }
 
 export function useAuth() {
-	const context = useContext(AuthContext)
-	if (context === undefined) {
-		throw new Error('useAuth deve ser usado dentro de um AuthProvider')
-	}
-	return context
+  const context = useContext(AuthContext)
+  if (context === undefined) {
+    throw new Error('useAuth deve ser usado dentro de um AuthProvider')
+  }
+  return context
 }
