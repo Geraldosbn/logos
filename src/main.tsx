@@ -15,20 +15,20 @@ import Notification from './components/Notification/Notification.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <NotificationProvider>
-      <NotificationHelperProvider>
-        <ErrorBoundary>
-          <Notification />
-          <QueryClientProvider client={queryClient}>
-            <ThemeProvider theme={globalTheme}>
-              <CssBaseline />
+    <ThemeProvider theme={globalTheme}>
+      <CssBaseline />
+      <ErrorBoundary>
+        <NotificationProvider>
+          <NotificationHelperProvider>
+            <Notification />
+            <QueryClientProvider client={queryClient}>
               <AuthProvider>
                 <App />
               </AuthProvider>
-            </ThemeProvider>
-          </QueryClientProvider>
-        </ErrorBoundary>
-      </NotificationHelperProvider>
-    </NotificationProvider>
+            </QueryClientProvider>
+          </NotificationHelperProvider>
+        </NotificationProvider>
+      </ErrorBoundary>
+    </ThemeProvider>
   </React.StrictMode>
 )

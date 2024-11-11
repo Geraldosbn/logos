@@ -1,11 +1,11 @@
-import {Navigate, Outlet} from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import AppDrawer from '../../containers/AppDrawer/AppDrawer'
-import {useAuth} from '../../context/AuthContext'
+import { useAuth } from '../../context/AuthContext'
 
 export const Main = () => {
-  const {authentication, loading} = useAuth()
+  const { authentication, isLoading } = useAuth()
 
-  if (!authentication.isAuth && !loading) return <Navigate to="/" />
+  if (!authentication.isAuth && !isLoading) return <Navigate to="/" />
   return (
     <AppDrawer>
       <Outlet />
