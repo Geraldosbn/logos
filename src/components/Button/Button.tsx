@@ -1,7 +1,13 @@
+import { CircularProgress } from '@mui/material'
 import ButtonMui from '@mui/material/Button'
-import {ButtonProps} from '@mui/material/Button'
+import { ButtonProps } from '@mui/material/Button'
 
-export const Button = (props: ButtonProps) => {
+interface Props extends ButtonProps {
+  isLoading?: boolean
+}
+
+export const Button = (props: Props) => {
+  if (props.isLoading) return <CircularProgress size={30} />
   return (
     <ButtonMui
       size="small"

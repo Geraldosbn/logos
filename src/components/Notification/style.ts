@@ -5,6 +5,7 @@ export const useStyles = makeStyles(() => ({
     justifyContent: 'center',
     width: '100vw',
     marginTop: 20,
-    position: 'absolute'
+    position: 'absolute',
+    zIndex: 9999
   }
 }))

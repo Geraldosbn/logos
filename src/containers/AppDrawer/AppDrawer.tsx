@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
 import Toolbar from '@mui/material/Toolbar'
@@ -10,18 +10,18 @@ import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import {AppBar, DrawerHeader, Main, drawerWidth} from './style'
-import {listItems} from './utils/listItem'
-import {Logo} from '../../components/Logo/Logo'
-import {useAuth} from '../../context/AuthContext'
-import {Logout} from '@mui/icons-material'
+import { AppBar, DrawerHeader, Main, drawerWidth } from './style'
+import { listItems } from './utils/listItem'
+import { Logo } from '../../components/Logo/Logo'
+import { useAuth } from '../../context/AuthContext'
+import { Logout } from '@mui/icons-material'
 
 interface AppDrawerProps {
   children?: React.ReactNode
 }
 
-export default function AppDrawer({children}: AppDrawerProps) {
-  const {logout} = useAuth()
+export default function AppDrawer({ children }: AppDrawerProps) {
+  const { logout } = useAuth()
   const [open, setOpen] = useState(true)
 
   const handleDrawerOpen = () => {
@@ -37,7 +37,7 @@ export default function AppDrawer({children}: AppDrawerProps) {
   }, [])
 
   return (
-    <Box sx={{display: 'flex'}}>
+    <Box sx={{ display: 'flex' }}>
       <AppBar
         position="fixed"
         open={open}>
@@ -49,7 +49,7 @@ export default function AppDrawer({children}: AppDrawerProps) {
             edge="start"
             sx={{
               mr: 2,
-              ...(open && {display: 'none'}),
+              ...(open && { display: 'none' }),
               position: 'absolute'
             }}>
             <MenuIcon />
@@ -83,7 +83,7 @@ export default function AppDrawer({children}: AppDrawerProps) {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        {listItems.map(({label, to, icon}) => (
+        {listItems.map(({ label, to, icon }) => (
           <div key={label}>
             <ListItem disablePadding>
               <ListItemButton
