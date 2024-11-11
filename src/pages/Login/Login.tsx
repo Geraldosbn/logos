@@ -1,20 +1,20 @@
-import {useEffect} from 'react'
-import {useStyles} from './style'
-import {Button} from '../../components/Button/Button'
-import {useNavigate} from 'react-router-dom'
-import {useAuth} from '../../context/AuthContext'
-import {useFormValidate} from '../../hooks/useFormValidate'
-import {InputTextField} from '../../components/InputTextField/InputTextField'
-import {schemaLogin} from './schema/loginSchema'
-import {Logo} from '../../components/Logo/Logo'
-import {PaperForm} from '../../components/PaperForm/PaperForm'
-import {Login as LoginInterface} from '../../shared/interfaces/interfaces'
+import { useEffect } from 'react'
+import { useStyles } from './style'
+import { Button } from '../../components/Button/Button'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
+import { useFormValidate } from '../../hooks/useFormValidate'
+import { InputTextField } from '../../components/InputTextField/InputTextField'
+import { schemaLogin } from './schema/loginSchema'
+import { Logo } from '../../components/Logo/Logo'
+import { PaperForm } from '../../components/PaperForm/PaperForm'
+import { Login as LoginInterface } from '../../shared/interfaces/interfaces'
 
 export const Login = () => {
   const classes = useStyles()
   const navigate = useNavigate()
-  const {login, authentication} = useAuth()
-  const {register, handleSubmit, errors} = useFormValidate(schemaLogin)
+  const { isLoading, login, authentication } = useAuth()
+  const { register, handleSubmit, errors } = useFormValidate(schemaLogin)
 
   useEffect(() => {
     authentication.isAuth && navigate('/main')
@@ -33,7 +33,8 @@ export const Login = () => {
         <InputTextField
           label="Usuário"
           autoComplete="login"
-          inputProps={{...register('login')}}
+          disabled={isLoading}
+          inputProps={{ ...register('login') }}
           error={!!errors.login}
           helperText={errors.login?.message as string}
         />
@@ -41,11 +42,16 @@ export const Login = () => {
           label="Senha"
           type="password"
           autoComplete="current-password"
-          inputProps={{...register('password')}}
+          disabled={isLoading}
+          inputProps={{ ...register('password') }}
           error={!!errors.password}
           helperText={errors.password?.message as string}
         />
-        <Button type="submit">Entrar</Button>
+        <Button
+          type="submit"
+          isLoading={isLoading}>
+          Entrar
+        </Button>
       </PaperForm>
     </div>
   )
